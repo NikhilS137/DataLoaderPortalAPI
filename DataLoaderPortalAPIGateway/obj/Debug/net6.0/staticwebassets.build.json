@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "dCKPy4a26GwuvFqYVGjPvBZABX6loowRZzy8BJRmhT0=",
+  "Source": "DataLoaderPortalAPIGateway",
+  "BasePath": "_content/DataLoaderPortalAPIGateway",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

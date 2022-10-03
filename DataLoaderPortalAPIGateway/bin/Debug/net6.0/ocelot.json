@@ -1,0 +1,136 @@
+{
+  "Routes": [
+    {
+      //localhost:7080/api/Login
+      "DownstreamPathTemplate": "/api/Login",
+      "DownstreamScheme": "https",
+      "downstreamHttpMethod": "Post",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7080"
+
+        }
+      ],
+      "UpstreamPathTemplate": "/Login",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      //https://localhost:7127/api/FileUpload/FileUpload
+      "DownstreamPathTemplate": "/api/FileUpload/FileUpload",
+      "DownstreamScheme": "https",
+      "downstreamHttpMethod": "Post",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7127"
+
+        }
+      ],
+      "UpstreamPathTemplate": "/FileUpload",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      //https://localhost:7127/api/FileUpload/FileUpload
+      "DownstreamPathTemplate": "/api/FileUpload/FileUpload",
+      "DownstreamScheme": "https",
+      "downstreamHttpMethod": "Post",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7127"
+
+        }
+      ],
+      "UpstreamPathTemplate": "/FU/File",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      //https://localhost:7127/api/FileUpload
+      "DownstreamPathTemplate": "/api/FileUpload",
+      "DownstreamScheme": "https",
+      "downstreamHttpMethod": "Get",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7127"
+
+        }
+      ],
+      "UpstreamPathTemplate": "/GetFileUploadList",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      //https://localhost:7127/api/PatientMasters
+      "DownstreamPathTemplate": "/api/PatientMasters",
+      "DownstreamScheme": "https",
+      "downstreamHttpMethod": "Get",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7127"
+
+        }
+      ],
+      "UpstreamPathTemplate": "/GetPatientList",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      //https://localhost:7127/api/PatientMasters
+      "DownstreamPathTemplate": "/api/PatientMasters/{id}",
+      "DownstreamScheme": "https",
+      "downstreamHttpMethod": "Put",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7127"
+
+        }
+      ],
+      "UpstreamPathTemplate": "/UpdatePatientDetails/{id}",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+    {
+      //https://localhost:7127/api/PatientMasters
+      "DownstreamPathTemplate": "/api/PatientMasters/GetPatientDetailsByName?name={name}",
+      "DownstreamScheme": "https",
+      "downstreamHttpMethod": "Get",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7127"
+
+        }
+      ],
+      "UpstreamPathTemplate": "/GetPatientDetailsByName?name={name}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      //https://localhost:7127/api/PatientMasters/UpdateStatus
+      "DownstreamPathTemplate": "/api/PatientMasters/UpdateStatus?id={id}&status={status}",
+      "DownstreamScheme": "https",
+      "downstreamHttpMethod": "Put",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7127"
+
+        }
+      ],
+      "UpstreamPathTemplate": "/UpdateStatus/{id}/{status}",
+      "UpstreamHttpMethod": [ "Put" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7271/"
+  }
+
+}
