@@ -18,13 +18,14 @@ namespace AuthServer.Controllers
                 return BadRequest();
             }
 
-            bool result = false;
+            //bool result = false;
+            LoginMaster result = null;
 
             try
             {
                 result = userValidationModel.ValidateCredentials(userValidationModel.userName, userValidationModel.password);
 
-                if (result)
+                if (result != null)
                     return Ok();
                 else
                     return BadRequest();

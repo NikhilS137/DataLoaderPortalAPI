@@ -1,4 +1,5 @@
 using AuthServer.Models;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.ComponentModel.DataAnnotations;
@@ -36,35 +37,45 @@ app.UseAuthorization();
 app.MapControllers();
 
 
-//app.MapPost("/Login", object (UserValidationModel request, HttpContext http, ITokenService tokenService) =>
-//{
-//    var user = request.ValidateCredentials(request.userName, request.password);
+app.MapPost("/Login", object (UserValidationModel request, HttpContext http, ITokenService tokenService) =>
+{
+    var user = request.ValidateCredentials(request.userName, request.password);
 
-//    if (user)
-//    {
-//        var token = tokenService.BuildToken(builder.Configuration["Jwt:Key"],
-//                                              builder.Configuration["Jwt:Issuer"],
-//                                              new[]
-//                                              {
-//                                                  builder.Configuration["Jwt:Aud1"],
-//                                                      },
-//                                              request.userName);
-//        return new
-//        {
-//            Token = token,
-//            IsAuthenticated = true,
+    if (user != null)
+    {
+        var token = tokenService.BuildToken(builder.Configuration["Jwt:Key"],
+                                              builder.Configuration["Jwt:Issuer"],
+                                              new[]
+                                              {
+                                                  builder.Configuration["Jwt:Aud1"],
+                                                      },
+                                              request.userName);
+        dynamic result = new {
+            Token = token,
+            IsAuthenticated = true,
+            User = user
+        };
 
-//        };
-//    }
-//    return new
-//    {
-//        Token = string.Empty,
-//        User = user,
-//        IsAuthenticated = false,
-//    };
-//}).WithName("Login");
+        return result;
+        //return new
+        //{
+        //    Token = token,
+        //    IsAuthenticated = true,
+        //    User = user
 
+        //};
+    }
+    else
+    {
+            return BadRequest();
+    }
+  
+}).WithName("Login");
 
+object BadRequest()
+{
+    return BadRequest();
+}
 
 app.Run();
 

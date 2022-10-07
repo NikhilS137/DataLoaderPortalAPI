@@ -23,25 +23,25 @@ namespace UserService.Models
             string errorMessage = "";
 
             if (string.IsNullOrEmpty(patientName))
-                errorMessage += "patient name is required ,";
+                errorMessage += "Patient name is required ,";
             if (string.IsNullOrEmpty(add1))
-                errorMessage += "add1 is required ,";
+                errorMessage += "Add1 is required ,";
             if (string.IsNullOrEmpty(district))
-                errorMessage += "district is required ,";
+                errorMessage += "District is required ,";
             if (string.IsNullOrEmpty(state))
-                errorMessage += "state is required ,";
+                errorMessage += "State is required ,";
             if (string.IsNullOrEmpty(country))
-                errorMessage += "country is required ,";
+                errorMessage += "Country is required ,";
             if (string.IsNullOrEmpty(DOB))
                 errorMessage += "DOB is required ,";
             if (string.IsNullOrEmpty(emailID))
-                errorMessage += "emailID is required ,";
+                errorMessage += "EmailID is required ,";
             if (string.IsNullOrEmpty(phoneNo))
-                errorMessage += "phoneNo is required ,";
+                errorMessage += "PhoneNo is required ,";
             if (string.IsNullOrEmpty(drugID))
-                errorMessage += "drugID is required ,";
+                errorMessage += "DrugID is required ,";
             if (string.IsNullOrEmpty(drugName))
-                errorMessage += "drugName is required ,";
+                errorMessage += "DrugName is required ,";
 
 
             if(errorMessage == "")
@@ -52,7 +52,7 @@ namespace UserService.Models
                 if (!match.Success)
                 {
                     // does not match
-                    errorMessage += "patient name accepts only aplabates and white spaces and range between 5 to 30 ,";
+                    errorMessage += "Patient name accepts only aplabates and white spaces and range between 5 to 30 ,";
                 }
 
                 string phoneNumberPattern = @"^[0-9]{10}$";
@@ -61,7 +61,7 @@ namespace UserService.Models
                 if (!matchPhoneNumber.Success)
                 {
                     // does not match
-                    errorMessage += "phone number should contain only numbers and length should be 10 digits ,";
+                    errorMessage += "Phone number should contain only numbers and length should be 10 digits ,";
                 }
 
                 string emailIdPattern = @"^[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
@@ -70,7 +70,16 @@ namespace UserService.Models
                 if (!matchEmailID.Success)
                 {
                     // does not match
-                    errorMessage += "invalid email id ,";
+                    errorMessage += "Invalid email id ,";
+                } 
+                
+                string drugIdPattern = @"^\(?([0-9]{5})\)?[-]([0-9]{4})[-]([0-9]{2})$";
+                var matchDrugID = Regex.Match(drugID, drugIdPattern, RegexOptions.IgnoreCase);
+
+                if (!matchDrugID.Success)
+                {
+                    // does not match
+                    errorMessage += "Invalid drug id ,";
                 }
 
                 try
@@ -82,12 +91,12 @@ namespace UserService.Models
                     if (!matchDOB.Success)
                     {
                         // does not match
-                        errorMessage += "please enter DOB in MM/dd/yyyy format ,";
+                        errorMessage += "Please enter DOB in MM/dd/yyyy format ,";
                     }
                 }
                 catch (Exception ex)
                 {
-                    errorMessage += "incorrect date ,";
+                    errorMessage += "Incorrect date ,";
                 }
             }
 

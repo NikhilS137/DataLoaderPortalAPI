@@ -25,7 +25,7 @@ namespace UserService.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PatientMaster>>> GetPatientMasters()
         {
-            return await _context.PatientMasters.ToListAsync();
+            return await _context.PatientMasters.OrderByDescending(x => x.Id).ToListAsync();
         }
 
         // GET: api/PatientMasters/5
@@ -208,7 +208,21 @@ namespace UserService.Controllers
         [Route("GetPatientDetailsByName")]
         public  PatientMaster GetPatientMaster(string name)
         {
-            var patientMaster =  _context.PatientMasters.Where(x => x.PatientName == name).FirstOrDefault();
+            var patientMaster =  _context.PatientMasters.Where(x => x.PatientName == name || x.EmailId == name).FirstOrDefault();
+
+            if (patientMaster == null)
+            {
+                return null;
+            }
+
+            return patientMaster;
+        }
+
+        [HttpGet()]
+        [Route("GetPatientDetailsByNameOrEmail")]
+        public List<PatientMaster> GetPatientDetailsByNameOrEmail(string searchValue)
+        {
+            var patientMaster = _context.PatientMasters.Where(x => x.PatientName == searchValue || x.EmailId == searchValue).ToList();
 
             if (patientMaster == null)
             {

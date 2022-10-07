@@ -2,7 +2,7 @@
   "Routes": [
     {
       //localhost:7080/api/Login
-      "DownstreamPathTemplate": "/api/Login",
+      "DownstreamPathTemplate": "/Login",
       "DownstreamScheme": "https",
       "downstreamHttpMethod": "Post",
       "RouteIsCaseSensitive": false,
@@ -126,6 +126,38 @@
         }
       ],
       "UpstreamPathTemplate": "/UpdateStatus/{id}/{status}",
+      "UpstreamHttpMethod": [ "Put" ]
+    },
+    {
+      //https://localhost:7127/api/GetPatientDetailsByNameOrEmail
+      "DownstreamPathTemplate": "/api/PatientMasters/GetPatientDetailsByNameOrEmail?searchValue={searchValue}",
+      "DownstreamScheme": "https",
+      "downstreamHttpMethod": "Get",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7127"
+
+        }
+      ],
+      "UpstreamPathTemplate": "/GetPatientDetailsByNameOrEmail?searchValue={searchValue}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      //https://localhost:7127/api/ForgetPassword
+      "DownstreamPathTemplate": "/api/ForgetPassword",
+      "DownstreamScheme": "https",
+      "downstreamHttpMethod": "Put",
+      "RouteIsCaseSensitive": false,
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": "7127"
+
+        }
+      ],
+      "UpstreamPathTemplate": "/ForgetPassword",
       "UpstreamHttpMethod": [ "Put" ]
     }
   ],
