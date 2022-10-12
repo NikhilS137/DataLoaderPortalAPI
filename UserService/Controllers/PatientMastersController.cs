@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UserService.DBContext;
 using UserService.Models;
-using UserService.Services;
+using UserService.Services.Interfaces;
 
 namespace UserService.Controllers
 {

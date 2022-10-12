@@ -4,14 +4,10 @@ using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.EntityFrameworkCore;
 using UserService.DBContext;
 using UserService.Models;
+using UserService.Services.Interfaces;
 
 namespace UserService.Services
 {
-    public interface IForgetPasswordService
-    {
-        bool UpdatePassword(forgetpassword forgetpassword);
-        bool UserExists(string username);
-    }
     public class ForgetPasswordService : IForgetPasswordService
     {
         private DBDataLoaderPortalContext _DBDataLoaderPortalContext;

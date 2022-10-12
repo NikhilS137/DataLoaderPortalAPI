@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using UserService.DBContext;
 using UserService.Helpers;
 using UserService.Services;
+using UserService.Services.Interfaces;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,7 +16,6 @@ IMapper mapper = mappingConfig.CreateMapper();
 builder.Services.AddSingleton(mapper);
 
 // Add services to the container.
-builder.Services.AddScoped<ILoginService, LoginService>();
 builder.Services.AddScoped<IPatientMastersService, PatientMastersService>();
 builder.Services.AddScoped<IForgetPasswordService, ForgetPasswordService>();
 builder.Services.AddScoped<IFileUploadService, FileUploadService>();

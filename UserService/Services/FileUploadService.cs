@@ -1,24 +1,17 @@
 ﻿using AutoMapper;
 using UserService.DBContext;
 using UserService.Models;
+using UserService.Services.Interfaces;
 
 namespace UserService.Services
 {
-    public interface IFileUploadService
-    {
-        bool FileUpload(FileUploadModel fileUploadModel);
-        List<UploadFileLog> GetFileUploadLog();
-    }
     public class FileUploadService : IFileUploadService
     {
         private DBDataLoaderPortalContext _DBDataLoaderPortalContext;
 
-        private IMapper _mapper;
-
         public FileUploadService(DBDataLoaderPortalContext dBDataLoaderPortalContext)
         {
             _DBDataLoaderPortalContext = dBDataLoaderPortalContext;
-            //_mapper = mapper;
         }
 
         public bool FileUpload(FileUploadModel fileUploadModel)

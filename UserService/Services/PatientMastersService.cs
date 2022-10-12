@@ -3,18 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using UserService.DBContext;
 using UserService.Dtos;
 using UserService.Models;
+using UserService.Services.Interfaces;
 
 namespace UserService.Services
 {
-    public interface IPatientMastersService
-    {
-        List<PatientMaster> GetPatientList();
-        bool PutPatientMaster(int id, PatientMasterModel patientMaster);
-        bool PatientMasterExists(int id);
-        bool UpdatePatientMaster(int id, string status);
-        PatientMaster GetPatientMaster(string name);
-        List<PatientMaster> GetPatientDetailsByNameOrEmail(string searchValue);
-    }
     public class PatientMastersService : IPatientMastersService
     {
         private DBDataLoaderPortalContext _DBDataLoaderPortalContext;

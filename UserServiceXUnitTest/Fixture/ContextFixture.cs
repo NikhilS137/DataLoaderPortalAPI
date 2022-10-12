@@ -15,10 +15,8 @@ namespace UserServiceTest.Fixture
         {
             testDbContextMock = new TestDbContextMock();
 
-            // mock data created by https://barisates.github.io/pretend
             testDbContextMock.LoginMasters.AddRange(new UserService.DBContext.LoginMaster[]
             {
-                // for delete test
                 new UserService.DBContext.LoginMaster()
                 {
                    Id = 1,
@@ -27,7 +25,6 @@ namespace UserServiceTest.Fixture
                 RoleId = 1,
                 IsActive = true
                 },
-                // for get test
                 new UserService.DBContext.LoginMaster()
                 {
                      Id = 2,
@@ -108,7 +105,6 @@ namespace UserServiceTest.Fixture
 
         }
 
-        // https://docs.microsoft.com/en-us/visualstudio/code-quality/ca1063?view=vs-2019
         #region ImplementIDisposableCorrectly
         public void Dispose()
         {

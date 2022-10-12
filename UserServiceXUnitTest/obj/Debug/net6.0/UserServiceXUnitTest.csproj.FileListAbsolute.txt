@@ -352,3 +352,11 @@ D:\Nikhil\DataLoaderPortalAPIGateway\UserServiceXUnitTest\obj\Debug\net6.0\refin
 D:\Nikhil\DataLoaderPortalAPIGateway\UserServiceXUnitTest\obj\Debug\net6.0\UserServiceXUnitTest.pdb
 D:\Nikhil\DataLoaderPortalAPIGateway\UserServiceXUnitTest\obj\Debug\net6.0\UserServiceXUnitTest.genruntimeconfig.cache
 D:\Nikhil\DataLoaderPortalAPIGateway\UserServiceXUnitTest\obj\Debug\net6.0\ref\UserServiceXUnitTest.dll
+D:\Nikhil\DataLoaderPortalAPIGateway\UserServiceXUnitTest\bin\Debug\net6.0\AuthServer.deps.json
+D:\Nikhil\DataLoaderPortalAPIGateway\UserServiceXUnitTest\bin\Debug\net6.0\AuthServer.runtimeconfig.json
+D:\Nikhil\DataLoaderPortalAPIGateway\UserServiceXUnitTest\bin\Debug\net6.0\AuthServer.exe
+D:\Nikhil\DataLoaderPortalAPIGateway\UserServiceXUnitTest\bin\Debug\net6.0\Microsoft.IdentityModel.Abstractions.dll
+D:\Nikhil\DataLoaderPortalAPIGateway\UserServiceXUnitTest\bin\Debug\net6.0\AuthServer.dll
+D:\Nikhil\DataLoaderPortalAPIGateway\UserServiceXUnitTest\bin\Debug\net6.0\AuthServer.pdb
+D:\Nikhil\DataLoaderPortalAPIGateway\UserServiceXUnitTest\bin\Debug\net6.0\Castle.Core.dll
+D:\Nikhil\DataLoaderPortalAPIGateway\UserServiceXUnitTest\bin\Debug\net6.0\Moq.dll

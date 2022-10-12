@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using UserService.DBContext;
 using UserService.Models;
-using UserService.Services;
+using UserService.Services.Interfaces;
 
 namespace UserService.Controllers
 {
@@ -15,7 +15,6 @@ namespace UserService.Controllers
 
         public FileUploadController(IFileUploadService fileUploadService)
         {
-            //_context = context;
             _FileUploadService = fileUploadService;
         }
 
