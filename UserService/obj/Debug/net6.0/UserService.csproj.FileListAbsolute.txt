@@ -269,3 +269,4 @@ D:\Nikhil\DataLoaderPortalAPIGateway\UserService\bin\Debug\net6.0\ru\Microsoft.C
 D:\Nikhil\DataLoaderPortalAPIGateway\UserService\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 D:\Nikhil\DataLoaderPortalAPIGateway\UserService\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 D:\Nikhil\DataLoaderPortalAPIGateway\UserService\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Nikhil\DataLoaderPortalAPIGateway\UserService\bin\Debug\net6.0\AutoMapper.dll

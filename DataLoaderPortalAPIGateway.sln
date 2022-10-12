@@ -11,6 +11,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UserService", "UserService\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserServiceTest", "UserServiceTest\UserServiceTest.csproj", "{7A97F8AC-5655-49DE-8093-203F4AEF55FE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserServiceXUnitTest", "UserServiceXUnitTest\UserServiceXUnitTest.csproj", "{F52B3089-A18F-4BC4-878B-C38437226A2A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{7A97F8AC-5655-49DE-8093-203F4AEF55FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7A97F8AC-5655-49DE-8093-203F4AEF55FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7A97F8AC-5655-49DE-8093-203F4AEF55FE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F52B3089-A18F-4BC4-878B-C38437226A2A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F52B3089-A18F-4BC4-878B-C38437226A2A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F52B3089-A18F-4BC4-878B-C38437226A2A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F52B3089-A18F-4BC4-878B-C38437226A2A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

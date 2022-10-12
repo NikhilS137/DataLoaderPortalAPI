@@ -1,9 +1,25 @@
+using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using UserService.DBContext;
+using UserService.Helpers;
+using UserService.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+var mappingConfig = new MapperConfiguration(mc =>
+{
+    mc.AddProfile(new MappingProfile());
+});
+
+IMapper mapper = mappingConfig.CreateMapper();
+builder.Services.AddSingleton(mapper);
+
 // Add services to the container.
+builder.Services.AddScoped<ILoginService, LoginService>();
+builder.Services.AddScoped<IPatientMastersService, PatientMastersService>();
+builder.Services.AddScoped<IForgetPasswordService, ForgetPasswordService>();
+builder.Services.AddScoped<IFileUploadService, FileUploadService>();
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

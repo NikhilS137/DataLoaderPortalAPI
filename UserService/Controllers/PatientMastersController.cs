@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UserService.DBContext;
 using UserService.Models;
+using UserService.Services;
 
 namespace UserService.Controllers
 {
@@ -14,91 +15,93 @@ namespace UserService.Controllers
     [ApiController]
     public class PatientMastersController : ControllerBase
     {
-        private readonly DBDataLoaderPortalContext _context;
+        //private readonly DBDataLoaderPortalContext _context;
+        private IPatientMastersService _PatientMastersService;
 
-        public PatientMastersController(DBDataLoaderPortalContext context)
+        public PatientMastersController(IPatientMastersService patientMasterService)
         {
-            _context = context;
+            //_context = context;
+            _PatientMastersService = patientMasterService;
         }
 
         // GET: api/PatientMasters
         [HttpGet]
         public async Task<ActionResult<IEnumerable<PatientMaster>>> GetPatientMasters()
         {
-            return await _context.PatientMasters.OrderByDescending(x => x.Id).ToListAsync();
+            return _PatientMastersService.GetPatientList();
         }
 
-        // GET: api/PatientMasters/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<PatientMaster>> GetPatientMaster(int id)
-        {
-            var patientMaster = await _context.PatientMasters.FindAsync(id);
-
-            if (patientMaster == null)
-            {
-                return NotFound();
-            }
-
-            return patientMaster;
-        }
-
-        // PUT: api/PatientMasters/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutPatientMaster(int id, PatientMaster patientMaster)
+        //// GET: api/PatientMasters/5
+        //[HttpGet("{id}")]
+        //public async Task<ActionResult<PatientMaster>> GetPatientMaster(int id)
         //{
-        //    if (id != patientMaster.Id)
+        //    var patientMaster = await _context.PatientMasters.FindAsync(id);
+
+        //    if (patientMaster == null)
         //    {
-        //        return BadRequest();
+        //        return NotFound();
         //    }
 
-        //    _context.Entry(patientMaster).State = EntityState.Modified;
+        //    return patientMaster;
+        //}
 
-        //    try
+        //// PUT: api/PatientMasters/5
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        ////[HttpPut("{id}")]
+        ////public async Task<IActionResult> PutPatientMaster(int id, PatientMaster patientMaster)
+        ////{
+        ////    if (id != patientMaster.Id)
+        ////    {
+        ////        return BadRequest();
+        ////    }
+
+        ////    _context.Entry(patientMaster).State = EntityState.Modified;
+
+        ////    try
+        ////    {
+        ////        await _context.SaveChangesAsync();
+        ////    }
+        ////    catch (DbUpdateConcurrencyException)
+        ////    {
+        ////        if (!PatientMasterExists(id))
+        ////        {
+        ////            return NotFound();
+        ////        }
+        ////        else
+        ////        {
+        ////            throw;
+        ////        }
+        ////    }
+
+        ////    return NoContent();
+        ////}
+
+        //// POST: api/PatientMasters
+        //// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        //[HttpPost]
+        //public async Task<ActionResult<PatientMaster>> PostPatientMaster(PatientMaster patientMaster)
+        //{
+        //    _context.PatientMasters.Add(patientMaster);
+        //    await _context.SaveChangesAsync();
+
+        //    return CreatedAtAction("GetPatientMaster", new { id = patientMaster.Id }, patientMaster);
+        //}
+
+        //// DELETE: api/PatientMasters/5
+        //[HttpDelete("{id}")]
+        //public async Task<IActionResult> DeletePatientMaster(int id)
+        //{
+        //    var patientMaster = await _context.PatientMasters.FindAsync(id);
+        //    if (patientMaster == null)
         //    {
-        //        await _context.SaveChangesAsync();
+        //        return NotFound();
         //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!PatientMasterExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+
+        //    _context.PatientMasters.Remove(patientMaster);
+        //    await _context.SaveChangesAsync();
 
         //    return NoContent();
         //}
-
-        // POST: api/PatientMasters
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<PatientMaster>> PostPatientMaster(PatientMaster patientMaster)
-        {
-            _context.PatientMasters.Add(patientMaster);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetPatientMaster", new { id = patientMaster.Id }, patientMaster);
-        }
-
-        // DELETE: api/PatientMasters/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeletePatientMaster(int id)
-        {
-            var patientMaster = await _context.PatientMasters.FindAsync(id);
-            if (patientMaster == null)
-            {
-                return NotFound();
-            }
-
-            _context.PatientMasters.Remove(patientMaster);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
-        }
 
         [HttpPut("{id}")]
         public async Task<IActionResult> PutPatientMaster(int id, PatientMasterModel patientMaster)
@@ -112,42 +115,15 @@ namespace UserService.Controllers
             bool retVal = false;
             try
             {
-                var patient = new PatientMaster()
-                {
-                    Id = id,
-                    Address1 = patientMaster.Address1,
-                    Address2 = patientMaster.Address2,
-                    Address3 = patientMaster.Address3,
-                    District = patientMaster.District,
-                    State = patientMaster.State,
-                    Country = patientMaster.Country,
-                    Dob = patientMaster.Dob,
-                    EmailId = patientMaster.EmailId,
-                    PhoneNumber = patientMaster.PhoneNumber
-                };
-
-
-                using (var db = new DBDataLoaderPortalContext())
-                {
-                    db.PatientMasters.Attach(patient);
-                    db.Entry(patient).Property(x => x.Address1).IsModified = true;
-                    db.Entry(patient).Property(x => x.Address2).IsModified = true;
-                    db.Entry(patient).Property(x => x.Address3).IsModified = true;
-                    db.Entry(patient).Property(x => x.District).IsModified = true;
-                    db.Entry(patient).Property(x => x.State).IsModified = true;
-                    db.Entry(patient).Property(x => x.Country).IsModified = true;
-                    db.Entry(patient).Property(x => x.Dob).IsModified = true;
-                    db.Entry(patient).Property(x => x.EmailId).IsModified = true;
-                    db.Entry(patient).Property(x => x.PhoneNumber).IsModified = true;
-                    db.SaveChanges();
-
+                retVal = _PatientMastersService.PutPatientMaster(id, patientMaster);
+                if (retVal)
                     return Ok();
-                }
-
+                else
+                    return BadRequest("Something went wrong.");
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PatientMasterExists(id))
+                if (!_PatientMastersService.PatientMasterExists(id))
                 {
                     return NotFound();
                 }
@@ -173,26 +149,15 @@ namespace UserService.Controllers
             bool retVal = false;
             try
             {
-                var patient = new PatientMaster()
-                {
-                    Id = id,
-                    Status = status
-                };
-
-
-                using (var db = new DBDataLoaderPortalContext())
-                {
-                    db.PatientMasters.Attach(patient);
-                    db.Entry(patient).Property(x => x.Status).IsModified = true;
-                    db.SaveChanges();
-
+                retVal = _PatientMastersService.UpdatePatientMaster(id, status);
+                if (retVal)
                     return Ok();
-                }
-
+                else
+                    return BadRequest("Something went wrong.");
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PatientMasterExists(id))
+                if (!_PatientMastersService.PatientMasterExists(id))
                 {
                     return NotFound();
                 }
@@ -206,9 +171,9 @@ namespace UserService.Controllers
 
         [HttpGet()]
         [Route("GetPatientDetailsByName")]
-        public  PatientMaster GetPatientMaster(string name)
+        public async Task<PatientMaster> GetPatientMaster(string name)
         {
-            var patientMaster =  _context.PatientMasters.Where(x => x.PatientName == name || x.EmailId == name).FirstOrDefault();
+            var patientMaster = _PatientMastersService.GetPatientMaster(name);
 
             if (patientMaster == null)
             {
@@ -222,7 +187,7 @@ namespace UserService.Controllers
         [Route("GetPatientDetailsByNameOrEmail")]
         public List<PatientMaster> GetPatientDetailsByNameOrEmail(string searchValue)
         {
-            var patientMaster = _context.PatientMasters.Where(x => x.PatientName == searchValue || x.EmailId == searchValue).ToList();
+            var patientMaster = _PatientMastersService.GetPatientDetailsByNameOrEmail(searchValue);
 
             if (patientMaster == null)
             {
@@ -232,9 +197,9 @@ namespace UserService.Controllers
             return patientMaster;
         }
 
-        private bool PatientMasterExists(int id)
-        {
-            return _context.PatientMasters.Any(e => e.Id == id);
-        }
+        //private bool PatientMasterExists(int id)
+        //{
+        //    return _context.PatientMasters.Any(e => e.Id == id);
+        //}
     }
 }

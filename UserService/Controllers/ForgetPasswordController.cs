@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using UserService.DBContext;
 using UserService.Models;
+using UserService.Services;
 
 namespace UserService.Controllers
 {
@@ -12,11 +13,13 @@ namespace UserService.Controllers
     [ApiController]
     public class ForgetPasswordController : ControllerBase
     {
-        private readonly DBDataLoaderPortalContext _context;
+        //private readonly DBDataLoaderPortalContext _context;
+        private IForgetPasswordService _ForgetPasswordService;
 
-        public ForgetPasswordController(DBDataLoaderPortalContext context)
+        public ForgetPasswordController(IForgetPasswordService forgetPasswordService)
         {
-            _context = context;
+            //_context = context;
+            _ForgetPasswordService = forgetPasswordService;
         }
 
         [HttpPut()]
@@ -31,27 +34,34 @@ namespace UserService.Controllers
             bool retVal = false;
             try
             {
-                var user = new LoginMaster()
-                {
-                    Id = _context.LoginMasters.Where(x => x.Username == forgetpassword.username).Select( x => x.Id).SingleOrDefault(),
-                    Username = forgetpassword.username,
-                    Password = forgetpassword.password
-                };
+                //var user = new LoginMaster()
+                //{
+                //    Id = _context.LoginMasters.Where(x => x.Username == forgetpassword.username).Select( x => x.Id).SingleOrDefault(),
+                //    Username = forgetpassword.username,
+                //    Password = forgetpassword.password
+                //};
 
 
-                using (var db = new DBDataLoaderPortalContext())
-                {
-                    db.LoginMasters.Attach(user);
-                    db.Entry(user).Property(x => x.Password).IsModified = true;
-                    db.SaveChanges();
+                //using (var db = new DBDataLoaderPortalContext())
+                //{
+                //    db.LoginMasters.Attach(user);
+                //    db.Entry(user).Property(x => x.Password).IsModified = true;
+                //    db.SaveChanges();
 
+                //    return Ok();
+                //}
+
+                retVal = _ForgetPasswordService.UpdatePassword(forgetpassword);
+                if (retVal)
                     return Ok();
-                }
+                else
+                    return Problem("Something went wrong.");
+
 
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!UserExists(forgetpassword.username))
+                if (!_ForgetPasswordService.UserExists(forgetpassword.username))
                 {
                     return NotFound();
                 }
@@ -62,9 +72,9 @@ namespace UserService.Controllers
             }
         }
 
-        private bool UserExists(string username)
-        {
-            return _context.LoginMasters.Any(e => e.Username == username);
-        }
+        //private bool UserExists(string username)
+        //{
+        //    return _context.LoginMasters.Any(e => e.Username == username);
+        //}
     }
 }

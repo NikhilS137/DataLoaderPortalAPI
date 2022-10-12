@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "ZKucG9K/VBciXnRzSnmjTC3dzIiQu1KbqcTUc5/3yY6RDqaTum9Ur5QiYGe1BAZpMDNUHt0XXoR+NacTdylINw==",
+  "dgSpecHash": "Sfjmvk0umxJP3K4pZWJ0qbbJGg4IRSZeHUmbsIXnoWwfLWKPS3XYfgjI5pyTDKZzIfoao0jBzoPMxAC14cNTAQ==",
   "success": true,
   "projectFilePath": "D:\\Nikhil\\DataLoaderPortalAPIGateway\\UserService\\UserService.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\cogdotnet1692\\.nuget\\packages\\automapper\\12.0.0\\automapper.12.0.0.nupkg.sha512",
     "C:\\Users\\cogdotnet1692\\.nuget\\packages\\closedxml\\0.96.0\\closedxml.0.96.0.nupkg.sha512",
     "C:\\Users\\cogdotnet1692\\.nuget\\packages\\documentformat.openxml\\2.16.0\\documentformat.openxml.2.16.0.nupkg.sha512",
     "C:\\Users\\cogdotnet1692\\.nuget\\packages\\excelnumberformat\\1.1.0\\excelnumberformat.1.1.0.nupkg.sha512",

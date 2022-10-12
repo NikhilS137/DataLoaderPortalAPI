@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using UserService.DBContext;
 using UserService.Models;
+using UserService.Services;
 
 namespace UserService.Controllers
 {
@@ -9,11 +10,13 @@ namespace UserService.Controllers
     [ApiController]
     public class FileUploadController : ControllerBase
     {
-        private readonly DBDataLoaderPortalContext _context;
+        //private readonly DBDataLoaderPortalContext _context;
+        private IFileUploadService _FileUploadService;
 
-        public FileUploadController(DBDataLoaderPortalContext context)
+        public FileUploadController(IFileUploadService fileUploadService)
         {
-            _context = context;
+            //_context = context;
+            _FileUploadService = fileUploadService;
         }
 
         [HttpPost]
@@ -29,13 +32,11 @@ namespace UserService.Controllers
 
             try
             {
-                string FilePath = "";
-                int id = 0;
-                FilePath = fileUploadModel.SaveFileOnServer(out id);
-
                 bool result = false;
-                result = fileUploadModel.SaveRecordsInDB(FilePath,id);
-                if(result)    
+
+                result = _FileUploadService.FileUpload(fileUploadModel);
+
+                if (result)    
                     return Ok();
                 else
                     return Problem();
@@ -53,19 +54,7 @@ namespace UserService.Controllers
 
             try
             {
-
-                lsUploadFileLog = (from files in _context.UploadFileLogs
-                                   where files.Status != "Failed"
-                                   orderby files.FileUploadId descending
-                                   select new UploadFileLog
-                                   {
-                                       FileUploadId = files.FileUploadId,
-                                       FileName = files.FileName,
-                                       SavedRecordsCount = files.SavedRecordsCount,
-                                       ValidationFailedRecordsCount = files.ValidationFailedRecordsCount,
-                                       TotalRecordsCount = files.TotalRecordsCount,
-                                       Status = files.Status
-                                   }).ToList();
+                lsUploadFileLog = _FileUploadService.GetFileUploadLog();
             }
             catch (Exception ex)
             {
